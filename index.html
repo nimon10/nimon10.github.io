@@ -102,19 +102,21 @@
             <div>
                 <h3>Contacto</h3>
                 <ul>
-                    <li><i class="fas fa-envelope"></i> info@sistemaventas.com</li>
-                    <li><i class="fas fa-phone"></i> +57 300 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> nicolasmonroy@hotmail.com</li>
+                    <li><i class="fas fa-phone"></i> +57 314 272 8525</li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
             <div class="container">
-                <p>&copy; 2023 Sistema de Gestión de Ventas. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Sistema de Gestión de Ventas. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
     
     <script src="scripts/script.js"></script>
+    <script src="scripts/inventario.js"></script>
+    <script src="scripts/ventas.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Menú móvil
@@ -126,13 +128,17 @@
             });
             
             // Cargar estadísticas
-            const ventas = obtenerVentas();
-            const inventario = obtenerInventario();
-            const ventasPendientes = ventas.filter(venta => venta.estado === 'Pendiente').length;
-            
-            document.getElementById('total-ventas').textContent = ventas.length;
-            document.getElementById('total-productos').textContent = inventario.length;
-            document.getElementById('ventas-pendientes').textContent = ventasPendientes;
+            try {
+                const ventas = obtenerVentas();
+                const inventario = obtenerInventario();
+                const ventasPendientes = ventas.filter(venta => venta.estado === 'Pendiente').length;
+                
+                document.getElementById('total-ventas').textContent = ventas.length;
+                document.getElementById('total-productos').textContent = inventario.length;
+                document.getElementById('ventas-pendientes').textContent = ventasPendientes;
+            } catch (error) {
+                console.error("Error al cargar estadísticas:", error);
+            }
         });
     </script>
 </body>
